@@ -1,0 +1,14 @@
+---
+
+ - host: webserve1
+   name: play1
+   tasks:
+    - name: install Apache
+      apt: name=apache2 state=latest
+      
+    - name: configure website
+      become: true
+      copy: src=index.html dest=/var/www/html
+      
+    - name: start Apache2 service
+      service: name=apache2 state=started
